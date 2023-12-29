@@ -15,22 +15,15 @@ dotenv.config();
 // Variáveis do seu modelo
 
 const modelo = "gpt-3.5-turbo-1106"; //Modelo escolhido para a sua IA
-const temperatura = 0.5; //Temperatura da sua IA
+const temperatura = 1; //Temperatura da sua IA
 const DATABASE_FILE = 'zapgptdb.json'; //Banco de dados da sua IA
 
 // Final das variáveis do seu modelo
 
 //const client = new Client();
 
-//Para carregarmos o vídeo em nossa máquina Windows
-const client = new Client({
-    puppeteer: {
-        executablePath: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
-    }
-  });
-
 //Kit com os comandos otimizados para nuvem Ubuntu Linux (créditos Pedrinho da Nasa Comunidade ZDG)
-/*const client = new Client({
+const client = new Client({
   authStrategy: new LocalAuth({ clientId: 'Usuario1' }),
   puppeteer: {
     headless: true,
@@ -54,8 +47,7 @@ const client = new Client({
       '--disable-gpu'
     ]
   }
-});*/
-
+});
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY // This is also the default, can be omitted
@@ -204,7 +196,7 @@ client.on('qr', qr => {
 
 //Resposta de sucesso
 client.on('ready', () => {
-  console.log('Tudo certo! WhatsApp conectado.');
+  console.log('Tudo certo! ZapGPT conectado.');
 });
 
 //Inicializa o servidor
@@ -372,7 +364,7 @@ function readMap(numeroId) {
 client.on('message', async msg => {
     
     // msg.body !== null para ativar com qualquer coisa
-    if (!existsDB(msg.from) && msg.body === 'Olá' && msg.from.endsWith('@c.us') && !msg.hasMedia) {
+    if (!existsDB(msg.from) && msg.body === "Quero saber mais" && msg.from.endsWith('@c.us') && !msg.hasMedia) {
         addObject(msg.from, 'stepGPT', 'id_temp', 'done', [], null, null, 200);
     }
 
