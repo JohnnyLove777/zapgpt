@@ -19,12 +19,32 @@ const temperatura = 1; //Temperatura da sua IA
 const DATABASE_FILE = 'zapgptdb.json'; //Banco de dados da sua IA
 
 // Final das variáveis do seu modelo
+const wwebVersion = '2.2407.3';
 
-//const client = new Client();
+const client = new Client({
+  authStrategy: new LocalAuth({ clientId: sessao }),
+  puppeteer: {
+    headless: true,
+    //CAMINHO DO CHROME PARA WINDOWS (COLOQUE O SEU PROPRIO CAMINHO DO CHROME AQUI)
+    executablePath: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
+    //===================================================================================
+    // CAMINHO DO CHROME PARA MAC (REMOVER O COMENTÁRIO ABAIXO)
+    //executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    //===================================================================================
+    // CAMINHO DO CHROME PARA LINUX (REMOVER O COMENTÁRIO ABAIXO)
+    //executablePath: '/usr/bin/google-chrome-stable',
+    //===================================================================================    
+  },
+  webVersionCache: {
+      type: 'remote',
+      remotePath: `https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/${wwebVersion}.html`,
+  }
+});
+
 
 //Kit com os comandos otimizados para nuvem Ubuntu Linux (créditos Pedrinho da Nasa Comunidade ZDG)
-const client = new Client({
-  authStrategy: new LocalAuth({ clientId: 'Usuario1' }),
+/*const client = new Client({
+  authStrategy: new LocalAuth({ clientId: sessao }),
   puppeteer: {
     headless: true,
     //CAMINHO DO CHROME PARA WINDOWS (REMOVER O COMENTÁRIO ABAIXO)
@@ -34,7 +54,7 @@ const client = new Client({
     //executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
     //===================================================================================
     // CAMINHO DO CHROME PARA LINUX (REMOVER O COMENTÁRIO ABAIXO)
-    // executablePath: '/usr/bin/google-chrome-stable',
+     executablePath: '/usr/bin/google-chrome-stable',
     //===================================================================================
     args: [
       '--no-sandbox', //Necessário para sistemas Linux
@@ -46,8 +66,12 @@ const client = new Client({
       '--single-process', // <- Este não funciona no Windows, apague caso suba numa máquina Windows
       '--disable-gpu'
     ]
+  },
+  webVersionCache: {
+      type: 'remote',
+      remotePath: `https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/${wwebVersion}.html`,
   }
-});
+});*/
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY // This is also the default, can be omitted
