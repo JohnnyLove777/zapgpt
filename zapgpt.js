@@ -17,10 +17,10 @@ dotenv.config();
 const modelo = "gpt-3.5-turbo-1106"; //Modelo escolhido para a sua IA
 const temperatura = 1; //Temperatura da sua IA
 const DATABASE_FILE = 'zapgptdb.json'; //Banco de dados da sua IA
+const sessao = 'zapgpt';
 
 // Final das variáveis do seu modelo
 const wwebVersion = '2.2407.3';
-
 const client = new Client({
   authStrategy: new LocalAuth({ clientId: sessao }),
   puppeteer: {
@@ -40,7 +40,6 @@ const client = new Client({
       remotePath: `https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/${wwebVersion}.html`,
   }
 });
-
 
 //Kit com os comandos otimizados para nuvem Ubuntu Linux (créditos Pedrinho da Nasa Comunidade ZDG)
 /*const client = new Client({
