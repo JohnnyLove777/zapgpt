@@ -18,10 +18,10 @@ const modelo = "gpt-3.5-turbo-1106"; //Modelo escolhido para a sua IA
 const temperatura = 1; //Temperatura da sua IA
 const DATABASE_FILE = 'zapgptdb.json'; //Banco de dados da sua IA
 const sessao = 'zapgpt';
+const wwebVersion = '2.2407.3';
 
 // Final das variáveis do seu modelo
-/*const wwebVersion = '2.2407.3';
-const client = new Client({
+/*const client = new Client({
   authStrategy: new LocalAuth({ clientId: sessao }),
   puppeteer: {
     headless: true,
